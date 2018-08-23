@@ -25,13 +25,7 @@ app.use(session({
   store: new MongoStore({mongooseConnection: mongoose.connection})
 }));
 
-app.get('/', function(req, res, next){
-  res.render('index');
-});
-
-app.get('/test', function(req, res, next){
-  res.render('test');
-});
+require('./routes/user')(app);
 
 app.listen(3000, function(){
   console.log('Listening on port 3000');
