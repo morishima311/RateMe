@@ -2,14 +2,14 @@ var express = require('express');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var ejs = require('ejs');
-var engine = require('ejs-mate')
+var engine = require('ejs-mate');
 var session = require('express-session');
 var mongoose = require('mongoose');
 var MongoStore = require('connect-mongo')(session);
 
 var app = express();
 
-mongoose.connect('monogodb://localhost/rateme');
+mongoose.connect('mongodb://localhost/rateme');
 
 app.use(express.static('public'));
 app.engine('ejs', engine);
@@ -27,6 +27,10 @@ app.use(session({
 
 app.get('/', function(req, res, next){
   res.render('index');
+});
+
+app.get('/test', function(req, res, next){
+  res.render('test');
 });
 
 app.listen(3000, function(){
